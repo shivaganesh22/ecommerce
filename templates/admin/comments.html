@@ -1,0 +1,61 @@
+{%extends './home.html'%}
+{%block main%}
+
+<div id="layoutSidenav_content">
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Reviews</h1>
+        <div >
+       
+       
+        
+       
+        
+        <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>User</th>
+                <th>Product</th>
+                <th>Review</th>
+                <th>Image</th>
+                <th>Date</th>
+                <th>Delete</th>
+               
+                
+               
+            </tr>
+        </thead>
+        <tbody>
+          
+            {%for i in comments %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user}} <br>{{i.user.email}}</td>
+            <td><center>
+                
+                <a href='/product/{{i.product.id}}' > <img src="{{i.product.image.url}}" width="200px" height="200px" style="border-radius: 50%; border:5px solid black ;" alt=""></center><br><center><a href='/product/{{i.product.id}}' class='btn btn-info'>{{i.product}}</a></a></center></td>
+                
+            <td><h5>{{i.subject}}</h5><p>{{i.comment}}</p></td>
+            <td><center>
+                {%if i.image %}
+                <a href='/product/{{i.image.url}}'><img src="{{i.image.url}}" width="200px" height="200px" style="border-radius: 10%; border:5px solid black ;" alt=""></a></center>
+                {%else%}
+                No image
+                {%endif%}
+            </td>
+            <td>{{i.date}}</td>
+            <td><a href='/a/comment/delete/{{i.id}}' class='btn btn-danger'>Delete</a></td>
+          
+            </tr>
+            {%endfor%}          
+        </tbody>
+        </table>
+       
+        
+        
+   
+
+    </div>
+</div>
+{%endblock%}

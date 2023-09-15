@@ -1,0 +1,525 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block main%}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+    <!-- Google Fonts Roboto -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstap.min.css"> -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
+     <!-- Custom styles -->
+    <link rel="stylesheet" href="{%static 'css/product.css'%}" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+     
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+      h2 {
+        color: #000;
+        font-size: 26px;
+        font-weight: 300;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+        margin: 30px 0 80px;
+      }
+      h2 b {
+        color: #ffc000;
+      }
+      h2::after {
+        content: "";
+        width: 100px;
+        position: absolute;
+        margin: 0 auto;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.2);
+        left: 0;
+        right: 0;
+        bottom: -20px;
+      }
+      .carousel {
+        margin: 50px auto;
+        padding: 0 70px;
+      }
+      .carousel .item {
+        min-height: 330px;
+          text-align: center;
+        overflow: hidden;
+      }
+      .carousel .item .img-box {
+        height: 160px;
+        width: 100%;
+        position: relative;
+      }
+      .checked{
+    color: orange;
+   
+  }
+      .carousel .item img {	
+        max-width: 100%;
+        max-height: 100%;
+        display: inline-block;
+        position: absolute;
+        bottom: 0;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+      }
+      .carousel .item h4 {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+      .carousel .item .btn {
+        color: #333;
+          border-radius: 0;
+          font-size: 11px;
+          text-transform: uppercase;
+          font-weight: bold;
+          background: none;
+          border: 1px solid #ccc;
+          padding: 5px 10px;
+          margin-top: 5px;
+          line-height: 16px;
+      }
+      .carousel .item .btn:hover, .carousel .item .btn:focus {
+        color: #fff;
+        background: #000;
+        border-color: #000;
+        box-shadow: none;
+      }
+      .carousel .item .btn i {
+        font-size: 14px;
+          font-weight: bold;
+          margin-left: 5px;
+      }
+      .carousel .thumb-wrapper {
+        text-align: center;
+      }
+      .carousel .thumb-content {
+        padding: 15px;
+      }
+      .carousel .carousel-control {
+        height: 100px;
+          width: 40px;
+          background: none;
+          margin: auto 0;
+          background: rgba(0, 0, 0, 0.2);
+      }
+      .carousel .carousel-control i {
+          font-size: 30px;
+          position: absolute;
+          top: 50%;
+          display: inline-block;
+          margin: -16px 0 0 0;
+          z-index: 5;
+          left: 0;
+          right: 0;
+          color: rgba(0, 0, 0, 0.8);
+          text-shadow: none;
+          font-weight: bold;
+      }
+      .carousel .item-price {
+        font-size: 13px;
+        padding: 2px 0;
+      }
+      .carousel .item-price strike {
+        color: #999;
+        margin-right: 5px;
+      }
+      .carousel .item-price span {
+        color: #86bd57;
+        font-size: 110%;
+      }
+      .carousel .carousel-control.left i {
+        margin-left: -3px;
+      }
+      .carousel .carousel-control.left i {
+        margin-right: -3px;
+      }
+      .carousel .carousel-indicators {
+        bottom: -50px;
+      }
+      .carousel-indicators li, .carousel-indicators li.active {
+        width: 10px;
+        height: 10px;
+        margin: 4px;
+        border-radius: 50%;
+        border-color: transparent;
+      }
+      .carousel-indicators li {	
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .carousel-indicators li.active {	
+        background: rgba(0, 0, 0, 0.6);
+      }
+      .star-rating li {
+        padding: 0;
+      }
+      .star-rating i {
+        font-size: 14px;
+        color: #ffc000;
+      }
+      </style>
+</head>
+<body>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+<!-- content -->
+<section class="py-5">
+  <div class="container">
+    <div class="row gx-5">
+      <aside class="col-lg-6">
+        <div id="image-gallery">
+          <div class="border rounded-4 mb-3 d-flex justify-content-center">
+            <a data-fslightbox="mygallery" class="rounded-4" data-type="image" href="">
+              <img id="main-image" style="max-width: 100%; max-height: 100vh; margin: auto;" class="rounded-4 fit" src="{{ p.image.url }}" />
+            </a>
+          </div>
+          <div class="d-flex justify-content-center mb-3">
+            {% for i in p.productimage_set.all %}
+            <a data-fslightbox="mygallery" class="border mx-1 rounded-2 item-thumb">
+              <img width="60" height="60" class="rounded-2" src="{{ i.image.url }}" data-image-url="{{ i.image.url }}" />
+            </a>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <script>
+        $(document).ready(function() {
+          $(".item-thumb").click(function() {
+            var imageUrl = $(this).find("img").data("image-url");
+            $("#main-image").attr("src", imageUrl);
+          });
+        });
+        </script>
+        
+         
+        
+       
+
+ 
+        <!-- thumbs-wrap.// -->
+        <!-- gallery-wrap .end// -->
+      </aside>
+      <main class="col-lg-6">
+        <div class="ps-lg-3">
+          <h4 class="title text-dark">
+            {{p.name}} <br />
+            {{p.category}}
+          </h4>
+          <div class="d-flex flex-row my-3">
+            <div class="text-warning mb-1 me-2">
+              {%for i in p.ratings%}
+              <i class="fa fa-star"></i>
+              {%endfor%}
+              {%if p.halfstars%}
+              <i class="fas fa-star-half-alt"></i>
+              {%endif%}
+              <span class="ms-1">
+                
+              </span>
+            </div>
+            <span class="text-muted"><i class="fas fa-shopping-basket fa-sm mx-1"></i>154 orders</span>
+            <span class="text-success ms-2">In stock</span>
+          </div>
+
+          
+          <div class="mb-3">
+            <span class="h5">₹{{p.price}}</span>
+           
+          </div>
+
+          <p>
+           {{p.description}}
+          </p>
+
+          <!-- <div class="row">
+            <dt class="col-3">Type:</dt>
+            <dd class="col-9">Regular</dd>
+
+            <dt class="col-3">Color</dt>
+            <dd class="col-9">Brown</dd>
+
+            <dt class="col-3">Material</dt>
+            <dd class="col-9">Cotton, Jeans</dd>
+
+            <dt class="col-3">Brand</dt>
+            <dd class="col-9">Reebook</dd>
+          </div> -->
+
+          <hr />
+
+          <div class="row mb-4">
+            
+            <!-- col.// -->
+            <div class="col-md-4 col-6 mb-3">
+              <label class="mb-2 d-block">Quantity</label>
+              <div class="input-group mb-3" style="width: 170px;">
+                <button class="btn btn-white border border-secondary px-3" type="button" id="button-decre" data-mdb-ripple-color="dark">
+                  <i class="fas fa-minus"></i>
+                </button>
+                <input type="text" name="quantity" id="quantity" class="form-control text-center border border-secondary" value="1" min="1" max="10" aria-label="Example text with button addon" aria-describedby="button-addon1" />
+                <button class="btn btn-white border border-secondary px-3" type="button" id="button-incre" data-mdb-ripple-color="dark">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <span class="h5">Shipping:₹50</span>
+           
+          </div>
+          
+          <a id="buynow" class="btn btn-warning shadow-0"> Buy now </a>
+          <a id="addcart" class="btn btn-primary shadow-0"> <i class="me-1 fa fa-shopping-basket"></i> Add to cart </a>
+        </div>
+      </main>
+    </div>
+  </div>
+</section>
+
+
+<!-- content -->
+{%if len%}
+<section class="bg-light border-top py-4">
+  <div class="container">
+    <div class="row gx-4">
+      <div class="">
+        <div class="border rounded-2 px-3 py-2 bg-white">
+          <!-- Pills navs -->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <h2>Similar <b>Products</b></h2>
+                <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+                <!-- Carousel indicators -->
+                 
+                <!-- Wrapper for carousel items -->
+                <div class="carousel-inner">
+                  {%for i in main%}
+                  
+                  <div class="item active">
+                    <div class="row">
+                      {%for j in i%}
+
+                      
+
+                      <div class="col-sm-3" >
+                        <a href="/product/{{j.id}}" style="text-decoration: none;">
+                        <div class="thumb-wrapper" style="border: 2.5px solid black;border-radius: 10px;">
+                          <div class="img-box">
+                            <img src="{{j.image.url}}" class="img-responsive" alt="">
+                          </div>
+                          <div class="thumb-content">
+                            <h4>{{j.name}}</h4>
+                            <p class="item-price"><span>₹{{j.price}}</span></p>
+                            <div class="star-rating">
+                              <ul class="list-inline">
+                                {%for i in j.ratings%}
+                                <i class="fa fa-star"></i>
+                                {%endfor%}
+                                {%if j.halfstars%}
+                                <i class="fas fa-star-half-alt"></i>
+                                {%endif%}
+                              </ul>
+                            </div>
+                            <a href="/cart/add/1/{{j.id}}" class="btn btn-primary">Add to Cart</a>
+                          </div>						
+                        </div>
+                      </a>
+                      </div>
+                      {%endfor%}
+                      
+                    </div>
+                  </div>
+                  {%endfor%}
+                  {%for i in products%}
+                  
+                
+                
+                  <div class="item ">
+                   
+                    
+                    <div class="row">
+                      {%for j in i%}
+
+                      
+
+                      <div class="col-sm-3" >
+                        <a href="/product/{{j.id}}" style="text-decoration: none;">
+                        <div class="thumb-wrapper" style="border: 2.5px solid black;border-radius: 10px;">
+                          <div class="img-box">
+                            <img src="{{j.image.url}}" class="img-responsive" alt="">
+                          </div>
+                          <div class="thumb-content">
+                            <h4>{{j.name}}</h4>
+                            <p class="item-price"><span>₹{{j.price}}</span></p>
+                            <div class="star-rating">
+                              <ul class="list-inline">
+                                {%for i in j.ratings%}
+                                <i class="fa fa-star"></i>
+                                {%endfor%}
+                                {%if j.halfstars%}
+                                <i class="fas fa-star-half-alt"></i>
+                                {%endif%}
+                              </ul>
+                            </div>
+                            <a href="/cart/add/1/{{j.id}}" class="btn btn-primary">Add to Cart</a>
+                          </div>						
+                        </div>
+                      </a>
+                      </div>
+                      {%endfor%}
+                     
+                    </div>
+                  </div>
+                  {%endfor%}
+                  
+                </div>
+                <!-- Carousel controls -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                  <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                  <i class="fa fa-angle-right"></i>
+                </a>
+              </div>
+              </div>
+            </div>
+          </div>
+
+      
+          <!-- Pills content -->
+        </div>
+      </div>
+    
+      
+    </div>
+  </div>
+</section>
+{%endif%}
+
+
+<section class="bg-light border-top py-4">
+  <div class="container">
+    <div class="row gx-4">
+      <div class="col-lg-8 mb-4">
+        <div class="border rounded-2 px-3 py-2 bg-white">
+          <!-- Pills navs -->
+          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+            <li class="nav-item d-flex" role="presentation">
+              <a class="nav-link d-flex align-items-center justify-content-center w-100 active" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1" href="#collapse-1">Reviews</a>
+            </li>
+          
+          </ul>
+          <!-- Pills navs -->
+
+          <!-- Pills content -->
+          <div class="tab-content" id="ex1-content">
+          
+        {% for i in comments %}
+        <div class="comment mt-4 text-justify float-left">
+          <div style="display: flex;">
+            <img src="{%static 'profile.jpg'%}" alt="" class="rounded-circle" width="40" height="40">
+          <h4 style="margin-left: 10px;margin-top: 5px;">{{i.user | title}}</h4>
+          </div>
+          <span>- {{i.date}}</span>
+          <h5>{{i.subject}}</h5>
+          <p>{{i.comment}}</p>
+          
+            {%for j in i.rating%}
+                  <span class="fa fa-star checked"></span>
+                  {%endfor%}
+            {%for j in i.empty%}
+                  <span class="fa fa-star-o checked"></span>
+                  {%endfor%}
+            <br>              
+          {%if i.image%}
+          <a href="{{i.image.url}}">
+          <img src="{{i.image.url}}" alt="" srcset="" style="width: 100px;height: 100px;border-radius: 20px;border:2px solid black">
+         </a>
+          {%endif%}
+      </div>
+        {% endfor %}
+    
+          </div>
+          <!-- Pills content -->
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="px-0 border rounded-2 shadow-0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Add Review</h5>
+              {%if user.is_authenticated%}
+              <form action="" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                {{form.as_p}}
+                <center><button type="submit" class="btn btn-success">Submit</button></center>
+              </form>
+              {%else%}
+              Please Login to Add Review
+              {%endif%}
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<script>
+  q=document.getElementById("quantity")
+
+  document.getElementById("button-decre").addEventListener("click",()=>{
+    if(q.value>1)
+    q.value--
+  })
+  document.getElementById("button-incre").addEventListener("click",()=>{
+    if(q.value<10)
+    q.value++
+  })
+  document.getElementById("addcart").addEventListener("click",()=>{
+    l=window.location.href.split('/')
+    id=l[l.length-1]
+
+    window.location.href="/cart/add/"+q.value+"/"+id
+  })
+  document.getElementById("buynow").addEventListener("click",()=>{
+    l=window.location.href.split('/')
+    id=l[l.length-1]
+
+    window.location.href="/order/"+id+"/"+q.value
+  })
+  
+</script>
+
+    <script type="text/javascript" src="{%static 'js/product.js'%}"></script>
+    
+</body>
+</html>
+
+
+
+{%endblock%}

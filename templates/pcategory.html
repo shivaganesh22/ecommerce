@@ -1,0 +1,65 @@
+{%extends 'index.html'%}
+{%block main%}
+<style>
+  .checked{
+    color: orange;
+    margin-left: 10px;
+  }
+  h2 {
+      color: #000;
+      font-size: 26px;
+      font-weight: 300;
+      text-align: center;
+      text-transform: uppercase;
+      position: relative;
+      margin: 30px 0 80px;
+  }
+  h2 b {
+      color: #ffc000;
+  }
+  h2::after {
+      content: "";
+      width: 100px;
+      position: absolute;
+      margin: 0 auto;
+      height: 4px;
+      background: rgba(0, 0, 0, 0.2);
+      left: 0;
+      right: 0;
+      bottom: -20px;
+  }
+</style>
+<section>
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+  <div class="section2">
+    {%for cat,product in products.items%}
+    <h2> {{cat}} <b>Products</b></h2>
+    <div class="container"  style="width:auto;">
+      {%for i in product%}
+      <a href="/product/{{i.id}}" style="text-decoration: none;">
+      <div class="items">
+        <div class="img img1"><img src="{{i.image.url}}" alt=""></div>
+        <div class=name>{{i.category.sub_category | upper}}</div>
+        <div class="info">{{i.name}}</div>
+        <div class=price>₹{{i.price}}</div>
+        <div class="star-rating">
+          {%for j in i.ratings%}
+                <span class="fa fa-star checked"></span>
+                {%endfor%}
+                {%if i.halfstars %}
+                <span class="fa fa-star-half checked"></span>
+                {%else%}
+                {%endif%}
+        </div>
+        <center><a href="/cart/add/1/{{i.id}}" class="btn btn-outline-primary">Add to Cart</a></center>
+      </div></a>
+      {%endfor%}
+      
+    </div>
+    {%endfor%}
+   
+
+  </div>
+</div>                               		
+
+{%endblock%}

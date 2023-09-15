@@ -1,0 +1,52 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block main%}
+<link rel="stylesheet" href="{%static 'css/cart.css'%}">
+
+<h1>Your Orders</h1>
+
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-price">Price</label>
+    <label class="product-price">Is Paid</label>
+    <label class="product-price">Ordered Date</label>
+  
+    
+  </div>
+{%for i in orders%}
+<div class="product">
+    <a href="/order/{{i.ecommerce_id}}" style="text-decoration: none;">
+    <div class="product-image">
+      <img src="{{i.product.image.url}}">
+    </div>
+    <div class="product-details">
+      <div class="product-title">{{i.product.name}}</div>
+      <p class="product-description">{{i.product.category}}</p>
+      <p class="product-description">{{i.product.description}}</p>
+    </div>
+    <div class="product-quantity">Quantity :{{i.quantity}}</div>
+    <div class="product-quantity">
+      Price:{{i.product.price}}*{{i.quantity}} <br>
+      Shipping:{{i.shipping}} <br>
+      
+      <span class="product-price">{{i.total}}</span>
+    </div>
+    <div class="product-quantity">{%if i.payment_status%} Paid {%else%} Failed {%endif%}</div>
+    <div class="product-quantity">{{i.order_date}}</div>
+    
+  </a>
+  </div>
+  
+  
+  {%endfor%}
+  
+</div>
+
+ 
+
+
+{%endblock%}

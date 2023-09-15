@@ -1,0 +1,91 @@
+{%extends './home.html'%}
+{%block main%}
+
+<div id="layoutSidenav_content">
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Category</h1>
+        <div >
+       
+        <div style="display: flex;">
+        <form action="" method="post" style="width: 40%;" enctype="multipart/form-data">
+        {%csrf_token%}
+        
+        {%for field in form%}
+        <div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">{{field.label}}</label>
+                {{field}}
+                </div>
+        {%for error in field.errors%}
+          <font color="red">⦿{{error}}</font> <br>
+         
+           {%endfor%}
+        </div>
+        {%endfor%}
+        <center><button type="submit" class="btn btn-success" name="cat1">Submit</button></center>
+        </form>
+        
+        <form action="" method="post" style="width: 50%;float:right ;padding-left :10%">
+            {%csrf_token%}
+            {%for field in form1%}
+            <div>
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupSelect01">{{field.label}}</label>
+                    {{field}}
+                    </div>
+            {%for error in field.errors%}
+              <font color="red">⦿{{error}}</font> <br>
+             
+               {%endfor%}
+            </div>
+            {%endfor%}
+       
+          
+         
+        <center><button type="submit" class="btn btn-success" name="cat2">Submit</button></center>
+        </form>
+        
+
+        </div>
+        
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Categories</li>
+        </ol>
+        
+        <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Manage</th>
+                <th>Sub Category</th>
+                <th>Manage</th>
+                
+               
+            </tr>
+        </thead>
+        <tbody>
+          
+            {%for i in category%}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.main_category}}</td>
+            <td><center><a href='{{i.main_category.img.url}}' ><img src="{{i.main_category.img.url}}" width="200px" height="200px" style="border-radius: 50%; border:5px solid black ;" alt=""></a></center></td>
+            <td><a href='/a/categories/edit/m/{{i.main_category.id}}' class='btn btn-warning'>Edit</a> <a href='/a/categories/delete/m/{{i.main_category.id}}' class='btn btn-danger'>Delete</a></td>
+            <td>{{i.sub_category}}</td>
+            <td><a href='/a/categories/edit/s/{{i.id}}' class='btn btn-warning'>Edit</a> <a href='/a/categories/delete/s/{{i.id}}' class='btn btn-danger'>Delete</a></td>
+          
+            </tr>
+            {%endfor%}          
+        </tbody>
+        </table>
+       
+        
+        
+   
+
+    </div>
+</div>
+{%endblock%}

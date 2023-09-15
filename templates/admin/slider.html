@@ -1,0 +1,73 @@
+{%extends './home.html'%}
+{%block main%}
+
+<div id="layoutSidenav_content">
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Slider</h1>
+        <div >
+       
+        <div style="display: flex;">
+        <form action="" method="post" style="width: 40%;" enctype="multipart/form-data">
+        {%csrf_token%}
+        
+        {%for field in form%}
+        <div>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">{{field.label}}</label>
+                {{field}}
+                </div>
+        {%for error in field.errors%}
+          <font color="red">⦿{{error}}</font> <br>
+         
+           {%endfor%}
+        </div>
+        {%endfor%}
+        <center><button type="submit" class="btn btn-success">Submit</button></center>
+        </form>
+        
+      
+
+        </div>
+        
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Slides</li>
+        </ol>
+        
+        <table id="datatablesSimple">
+        <thead>
+            <tr>
+                <th>Sno</th>
+                <th>Image</th>
+                <th>Redirect</th>
+                <th>Edit</th>
+                <th>Delete</th>
+               
+                
+               
+            </tr>
+        </thead>
+        <tbody>
+          
+            {%for i in slides %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td><center><a href="{{i.image.url}}"><img src="{{i.image.url}}" width="200px" height="200px" style="border-radius: 50%; border:5px solid black ;" alt=""></a></center></td>
+            
+            <td><center><embed src="{{i.redirect_url}}" type=""></center><br><center><a href='{{i.redirect_url}}' class='btn btn-info'>{{i.redirect_url}}</a></center></td>
+            <td><a href='/a/slider/edit/{{i.id}}' class='btn btn-warning'>Edit</a></td>
+            
+            <td><a href='/a/slider/delete/{{i.id}}' class='btn btn-danger'>Delete</a></td>
+          
+            </tr>
+            {%endfor%}          
+        </tbody>
+        </table>
+       
+        
+        
+   
+
+    </div>
+</div>
+{%endblock%}

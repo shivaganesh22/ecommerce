@@ -1,0 +1,62 @@
+
+{%load static%}
+{%block content%}
+<!DOCTYPE html>
+<!-- Created By CodingNepal -->
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8" />
+        <!-- Somehow I got an error, so I comment the title, just uncomment to show -->
+        <!-- <title>Popup Login Form Design | CodingNepal</title> -->
+        <link rel="stylesheet" href="{%static 'css/login.css'%}" />
+<style>
+    .container{
+        width: 400px;
+    }
+</style>
+        
+    </head>
+    <body>
+        <div class="center">
+      
+            <div class="container">
+                
+                <div class="text">Login Form</div>
+                
+                <form method="post">
+                  {%csrf_token%}
+                  <br>
+                  {{form.non_field_errors}}
+                    <div class="data">
+                        <label>Username</label>
+                        {{form.login}}
+                        {{form.login.errors}}
+                    </div>
+                    <div class="data">
+                        <label>Password</label>
+                        {{form.password}}
+                        {{form.password.errors}}
+                    </div>
+                    <a class="" href="{% url 'account_reset_password' %}">Forgot Password</a>
+                    <div class="btn">
+                        <div class="inner"></div>
+                        <button type="submit">Login</button>
+                    </div>
+    
+                    <div class="signup-link">
+                        Not a member? <a href="/accounts/signup">Signup now</a>
+                    </div>
+                </form>
+                
+                <center>
+                    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+                </center>
+            </div>
+        </div>
+    </body>
+</html>
+
+{%endblock%}
+
+
+

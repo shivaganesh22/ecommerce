@@ -1,0 +1,81 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block main%}
+<link rel="stylesheet" href="{%static 'css/cart.css'%}">
+
+<h1>Shopping Cart</h1>
+{%if total%}
+<div class="shopping-cart">
+
+  <div class="column-labels">
+    <label class="product-image">Image</label>
+    <label class="product-details">Product</label>
+    <label class="product-price">Price</label>
+    <label class="product-quantity">Quantity</label>
+    <label class="product-removal">Remove</label>
+    <label class="product-line-price">Total</label>
+  </div>
+{%for i in items%}
+<div class="product">
+    <a href="/product/{{i.product.id}}" style="text-decoration: none;">
+    <div class="product-image">
+      <img src="{{i.product.image.url}}">
+    </div>
+  </a>
+    <div class="product-details">
+      <div class="product-title">{{i.product.name}}</div>
+      <p class="product-description">{{i.product.category}}</p>
+      <p class="product-description">{{i.product.description}}</p>
+    </div>
+    <div class="product-price">{{i.product.price}}</div>
+    <div class="product-quantity">
+      <input type="number" value="{{i.quantity}}" id="quantity" onchange="window.location.href='/cart/update/'+this.value+'/'+'{{i.id}}'" min="1" max="10">
+    </div>
+    <div class="product-removal">
+      <a class="remove-product" style="text-decoration: none;" href="/cart/del/{{i.id}}">
+        Remove
+      </a>
+    </div>
+    <div class="product-quantity">
+      <p class="product-description">{{i.product.price}}*{{i.quantity}}</p>
+      <p class="product-description">Shipping:{{i.shipping}}</p>
+      <p class="product-line-price">{{i.total}}</p>
+    </div>
+  
+      <!-- <div class="product-line-price">{{i.product.price}}*{{i.quantity}}<br></div> -->
+      <!-- <span class="product-line-price">{{i.price}}</span> -->
+  </div>
+{%endfor%}
+{%else%}
+No items 
+{%endif%}
+  {%if total%}
+
+  <div class="totals">
+    <div class="totals-item">
+      <label>Subtotal</label>
+      <div class="totals-value" id="cart-subtotal">{{subtotal}}</div>
+    </div>
+   
+    <div class="totals-item">
+      <label>Shipping</label>
+      <div class="totals-value" id="cart-shipping">{{shipping}}</div>
+    </div>
+    <div class="totals-item totals-item-total">
+      <label>Grand Total</label>
+      <div class="totals-value" id="cart-total">{{total}}</div>
+    </div>
+  </div>
+      
+      <a class="checkout" href="/order/cart/">Checkout</a>
+      {%endif%}
+
+</div>
+<!-- <script>
+  function update(id){
+    // alert(id)
+    q=document.getElementById("quantity").value
+    window.location.href="/cart/update/"+q+"/"+id
+  }
+</script> -->
+{%endblock%}

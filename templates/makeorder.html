@@ -1,0 +1,31 @@
+{%extends 'index.html'%}
+{%load static%}
+{%block main%}
+
+  <center>
+    <br>
+    <div><a id="add" class="btn btn-info">Add Address</a></div>
+    <form action="" method="post" style="width: 30%;">
+        {%csrf_token%}
+        <br>
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Address</label>
+            <select name="address" class="form-select"  required>
+                {%for i in address%}
+                <option value="{{i.id}}">{{i.full_name}},{{i.mobile_no}},{{i.address}},{{i.pin_code}}</option>
+                {%endfor%}
+            </select>
+            </div>
+       
+    
+    <button type="submit" id="" class="btn btn-success">Submit</button>
+    </form>
+</center>
+<script>
+  document.getElementById("add").addEventListener("click",()=>{
+    a=window.location.href
+    window.location.href="/accounts/address/add/?next="+a
+  })  
+</script>
+
+{%endblock%}
