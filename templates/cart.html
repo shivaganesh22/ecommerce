@@ -29,7 +29,7 @@
     </div>
     <div class="product-price">{{i.product.price}}</div>
     <div class="product-quantity">
-      <input type="number" value="{{i.quantity}}" id="quantity" onchange="window.location.href='/cart/update/'+this.value+'/'+'{{i.id}}'" min="1" max="10">
+      <input type="number" value="{{i.quantity}}" id="quantity" onchange=" if(this.value>=1 && this.value<=10){window.location.href='/cart/update/'+this.value+'/'+'{{i.id}}'}else{alert('Quantity should between 1 to 10')}" min="1" max="10">
     </div>
     <div class="product-removal">
       <a class="remove-product" style="text-decoration: none;" href="/cart/del/{{i.id}}">
