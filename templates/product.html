@@ -503,14 +503,24 @@
   document.getElementById("addcart").addEventListener("click",()=>{
     l=window.location.href.split('/')
     id=l[l.length-1]
-
-    window.location.href="/cart/add/"+q.value+"/"+id
+    if(q.value<=10 && q.value>=1){
+      window.location.href="/cart/add/"+q.value+"/"+id
+    }
+    else{
+      alert("Quantity should between 1 to 10")
+    }
+   
   })
   document.getElementById("buynow").addEventListener("click",()=>{
     l=window.location.href.split('/')
     id=l[l.length-1]
-
-    window.location.href="/order/"+id+"/"+q.value
+    if(q.value<=10 && q.value>=1){
+      window.location.href="/order/"+id+"/"+q.value
+    }
+    else{
+      alert("Quantity should between 1 to 10")
+    }
+    
   })
   
 </script>
