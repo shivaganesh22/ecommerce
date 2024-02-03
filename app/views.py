@@ -91,7 +91,7 @@ def cart(r):
     shipping=0
     total=0
     for i in items:
-        subtotal+=i.subtotal
+        subtotal+=i.subtotal*i.quantity
         shipping+=i.shipping
         total+=i.total
     return render(r,'cart.html',{"items":items,"shipping":shipping,"subtotal":subtotal,"total":(total)})
