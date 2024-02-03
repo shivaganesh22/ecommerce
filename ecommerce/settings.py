@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#y0_e)9%b1ya85kp#q@k4*3=uv35atsu#@x74^e6jjyu^%@p&k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',
     'django.contrib.sites',
+    'mathfilters',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

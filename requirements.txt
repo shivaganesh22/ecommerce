@@ -4,3 +4,4 @@ psycopg2-binary
 django-allauth
 qrcode
 razorpay
+django-mathfilters
