@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#y0_e)9%b1ya85kp#q@k4*3=uv35atsu#@x74^e6jjyu^%@p&k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -99,12 +99,8 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'cBb52bb1G1acAbA16FCfD3GFCB2D6E2C',
-        'HOST': 'monorail.proxy.rlwy.net',  # Set to your PostgreSQL host
-        'PORT': '51729',       # Set to your PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -143,8 +139,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 STATIC_URL = 'static/'
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATICFILES_DIRS=[os.path.join(BASE_DIR,"static")]
+STATIC_ROOT=os.path.join(BASE_DIR,"assets")
 MEDIA_URL='media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
 # Default primary key field type
